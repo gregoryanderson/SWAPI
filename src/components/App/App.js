@@ -8,8 +8,26 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      info: []
     }
+  }
+
+  fetchBios = (info) => {
+    // const promises = info.map(person => {
+    //   return fetch (person.homeworld)
+    //     .then(response => response.json())
+    //     .then(data => { ...info, name: person.name})
+    // })
+    // Promise.all(promises)
+  }
+
+  componentDidMount() {
+    fetch('https://swapi.co/api/people/')
+      .then(response => response.json())
+      .then(data => console.log(data.results))
+      // .then(data => this.fetchBios(data))
+      // .then(person => this.setState({info : person}))
+      .catch(error => console.log(error))
   }
 
   render() {
