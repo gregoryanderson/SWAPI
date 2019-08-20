@@ -3,7 +3,11 @@ import './App.css';
 
 function App() {
   return (
-    <p>yo</p>
+    <div>
+      <People />
+      <Planets />
+      <Vehicles />
+    </div>
   );
 }
 
