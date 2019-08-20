@@ -12,21 +12,36 @@ class App extends Component {
     }
   }
 
-  fetchBios = (info) => {
-    // const promises = info.map(person => {
-    //   return fetch (person.homeworld)
-    //     .then(response => response.json())
-    //     .then(data => { ...info, name: person.name})
-    // })
-    // Promise.all(promises)
+  fetchWorld = (peopleInfo) => {
+    console.log(peopleInfo)
+    const promises = peopleInfo.map(person => {
+      return fetch (person.homeworld)
+        .then(response => response.json())
+        .then(data => ({ ...data, personName: person.name, personSpecies: person.species}))
+        .then(personWorldData => this.fetchSpeciesInfo(personWorldData))
+        .then(ish => console.log('boo', ish))
+        .catch(error => console.log(error))
+      })
+      return Promise.all(promises)
+    }
+    
+    fetchSpeciesInfo = (personWorldInfo) => {
+      console.log('in the damn species method', personWorldInfo)
+      const promises = personWorldInfo.personSpecies.map(species => {
+        fetch(personWorldInfo.personSpecies[0])
+        .then(response => response.json())
+        .then(data => ({...data, personName: personWorldInfo.personName, personSpecies: data.name, personPlanet: personWorldInfo.name, personPlanetPopulation: personWorldInfo.population, personLanguage: data.language}))
+        .catch(error => console.log(error))
+    })
+    Promise.all(promises)
   }
+
 
   componentDidMount() {
     fetch('https://swapi.co/api/people/')
       .then(response => response.json())
-      .then(data => console.log(data.results))
-      // .then(data => this.fetchBios(data))
-      // .then(person => this.setState({info : person}))
+      .then(data => this.fetchWorld(data.results))
+      .then(info => this.setState({info}))
       .catch(error => console.log(error))
   }
 
