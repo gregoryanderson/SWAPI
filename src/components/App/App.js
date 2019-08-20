@@ -40,7 +40,6 @@ class App extends Component {
       fetch('https://swapi.co/api/people/')
       .then(response => response.json())
       .then(data => this.fetchWorld(data.results))
-      // .then(potato => console.log(potato.flat()))
       .then(info => this.setState({info: info.flat()}))
       .catch(error => console.log(error))
   }
