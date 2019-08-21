@@ -52,7 +52,7 @@ class App extends Component {
       })
       return Promise.all(promises)
     }
-    
+
     identifyVehicleInfo = (vehicleInfo) => {
       return vehicleInfo.map(vehicle => {
         return {
