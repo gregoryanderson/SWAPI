@@ -19,23 +19,23 @@ class App extends Component {
     }
   }
 
-  fetchWorld = (peopleInfo) => {
+  fetchPlanetInfoForPerson = (peopleInfo) => {
     const promises = peopleInfo.map(person => {
       return fetch (person.homeworld)
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => ({ ...data, personName: person.name, personSpecies: person.species}))
-        .then(personWorldData => this.fetchSpeciesInfo(personWorldData))
-        .catch(error => console.log(error))
+        .then(personAndWorldData => this.fetchSpeciesInfoForPerson(personAndWorldData))
+        .catch(err => console.log(err))
       })
       return Promise.all(promises)
     }
     
-    fetchSpeciesInfo = (personWorldInfo) => {
+    fetchSpeciesInfoForPerson = (personWorldInfo) => {
       const promises = personWorldInfo.personSpecies.map(species => {
         return fetch(personWorldInfo.personSpecies[0])
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => ({personName: personWorldInfo.personName, personSpecies: data.name, personPlanet: personWorldInfo.name, personPlanetPopulation: personWorldInfo.population, personLanguage: data.language}))
-        .catch(error => console.log(error))
+        .catch(err => console.log(err))
       })
       return Promise.all(promises)
     }
@@ -57,18 +57,33 @@ class App extends Component {
       })
       return Promise.all(promises)
     }
-    
+
+    identifyVehicleInfo = (vehicleInfo) => {
+      return vehicleInfo.map(vehicle => {
+        return {
+          name: vehicle.name,
+          model: vehicle.model,
+          class: vehicle.vehicle_class,
+          passengers: vehicle.passengers
+        }
+      })
+    }
 
     componentDidMount() {
       fetch('https://swapi.co/api/people/')
-      .then(response => response.json())
-      .then(data => this.fetchWorld(data.results))
-      .then(info => this.setState({people: info.flat()}))
+      .then(res => res.json())
+      .then(data => this.fetchPlanetInfoForPerson(data.results))
+      .then(personInfo => this.setState({people: personInfo.flat()}))
       .then(fetch('https://swapi.co/api/planets/')
       .then(res => res.json())
       .then(data => this.fetchPlanetInfo(data.results))
-      .then(planetInfo => this.setState({planets: planetInfo, isLoaded: true})))
-      .catch(error => console.log(error))
+
+      .then(planetInfo => this.setState({planets: planetInfo})))
+      .then(fetch('https://swapi.co/api/vehicles/')
+      .then(res => res.json())
+      .then(data => this.identifyVehicleInfo(data.results))
+      .then(vehicleInfo => this.setState({vehicles: vehicleInfo, isLoaded: true})))
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -84,7 +99,7 @@ class App extends Component {
         </ul>
       </nav>
       <section>
-        {this.state.isLoaded && <Main people={this.state.vehicles}/>}
+        {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
       </section>
     </div>
     )

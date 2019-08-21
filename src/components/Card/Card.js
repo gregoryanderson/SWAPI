@@ -12,8 +12,8 @@ function Card (props) {
             </header>
             <div>
                 <p>{props.homeworld || null}</p>
-                <p>Species: {props.species}</p>
-                <p>Population: {props.population}</p>
+                <p>{props.species || null}</p>
+                <p>{props.population || null}</p>
             </div>
         </section>
     )
