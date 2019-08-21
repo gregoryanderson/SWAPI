@@ -1,7 +1,9 @@
 import React, { Component }from 'react';
-import People from '../People/People'
-import Planets from '../Planets/Planets'
-import Vehicles from '../Vehicles/Vehicles'
+import Main from '../Main/Main';
+import People from '../People/People';
+import Planets from '../Planets/Planets';
+import Vehicles from '../Vehicles/Vehicles';
+import Card from '../Card/Card';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +12,10 @@ class App extends Component {
     this.state = {
       people: [],
       planets: [],
-      vehicles: []
+      vehicles: [],
+      hasError: '',
+      film: '',
+      isLoaded: false
     }
   }
 
@@ -62,16 +67,25 @@ class App extends Component {
       .then(fetch('https://swapi.co/api/planets/')
       .then(res => res.json())
       .then(data => this.fetchPlanetInfo(data.results))
-      .then(planetInfo => this.setState({planets: planetInfo})))
+      .then(planetInfo => this.setState({planets: planetInfo, isLoaded: true})))
       .catch(error => console.log(error))
   }
 
   render() {
     return (
     <div>
-      <People />
-      <Planets />
-      <Vehicles />
+      {/* {this.state.isLoaded && <button className="button--enter">ENTER</button> }  */}
+      <nav>
+        <h1>SWAPI-BOX</h1>
+        <ul>
+          <li>PEOPLE</li>
+          <li>PLANETS</li>
+          <li>VEHICLES</li>
+        </ul>
+      </nav>
+      <section>
+        {this.state.isLoaded && <Main people={this.state.vehicles}/>}
+      </section>
     </div>
     )
   }
