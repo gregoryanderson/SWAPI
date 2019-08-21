@@ -8,12 +8,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      info: []
+      people: [],
+      planets: [],
+      vehicles: []
     }
   }
 
   fetchWorld = (peopleInfo) => {
-    console.log(peopleInfo)
     const promises = peopleInfo.map(person => {
       return fetch (person.homeworld)
         .then(response => response.json())
@@ -25,12 +26,29 @@ class App extends Component {
     }
     
     fetchSpeciesInfo = (personWorldInfo) => {
-      console.log('in the damn species method', personWorldInfo)
       const promises = personWorldInfo.personSpecies.map(species => {
         return fetch(personWorldInfo.personSpecies[0])
         .then(response => response.json())
-        .then(data => ({...data, personName: personWorldInfo.personName, personSpecies: data.name, personPlanet: personWorldInfo.name, personPlanetPopulation: personWorldInfo.population, personLanguage: data.language}))
+        .then(data => ({personName: personWorldInfo.personName, personSpecies: data.name, personPlanet: personWorldInfo.name, personPlanetPopulation: personWorldInfo.population, personLanguage: data.language}))
         .catch(error => console.log(error))
+      })
+      return Promise.all(promises)
+    }
+
+    fetchPlanetInfo = (planetInfo) => {
+      const promises = planetInfo.map(planet => {
+          return {
+            name: planet.name,
+            terrain: planet.terrain,
+            population: planet.population,
+            climate: planet.climate,
+            residents: planet.residents.map(resident => {
+              return fetch(resident)
+              .then(res => res.json())
+              .then(data => data.name)
+              .catch(err => console.log(err))
+            })
+          }
       })
       return Promise.all(promises)
     }
@@ -40,7 +58,11 @@ class App extends Component {
       fetch('https://swapi.co/api/people/')
       .then(response => response.json())
       .then(data => this.fetchWorld(data.results))
-      .then(info => this.setState({info: info.flat()}))
+      .then(info => this.setState({people: info.flat()}))
+      .then(fetch('https://swapi.co/api/planets/')
+      .then(res => res.json())
+      .then(data => this.fetchPlanetInfo(data.results))
+      .then(planetInfo => this.setState({planets: planetInfo})))
       .catch(error => console.log(error))
   }
 
