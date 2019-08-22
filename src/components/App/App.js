@@ -64,7 +64,7 @@ class App extends Component {
         return {
           name: vehicle.name,
           model: vehicle.model,
-          class: vehicle.vehicle_class,
+          vehicleClass: vehicle.vehicle_class,
           passengers: vehicle.passengers
         }
       })
@@ -88,6 +88,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <main className="App">
         <header className="header">
