@@ -13,7 +13,7 @@ const Main = props => {
         />
     })
     return (
-        <section>
+        <section className="main__section">
             {allCards}
         </section>
     )
