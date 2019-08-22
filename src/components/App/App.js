@@ -1,5 +1,6 @@
 import React, { Component }from 'react';
 import Main from '../Main/Main';
+import { Route, NavLink } from 'react-router-dom'
 import People from '../People/People';
 import Planets from '../Planets/Planets';
 import Vehicles from '../Vehicles/Vehicles';
@@ -88,22 +89,39 @@ class App extends Component {
 
   render() {
     return (
-    <div>
-      {/* {this.state.isLoaded && <button className="button--enter">ENTER</button> }  */}
-      <nav>
-        <h1>S W A P I - B O X</h1>
-        <ul>
-          <li>PEOPLE</li>
-          <li>PLANETS</li>
-          <li>VEHICLES</li>
-        </ul>
-      </nav>
-      <section className="app__section">
-        {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
-      </section>
-    </div>
+      <main className="App">
+        <header className="header">
+          <h1>S W A P I - B O X</h1>
+          <NavLink to="/people" className="nav">PEOPLE</NavLink>
+          <NavLink to="/planets" className="nav">PLANETS</NavLink>
+          <NavLink to="/vehicles" className="nav">VEHICLES</NavLink>
+        </header>
+        <Route path="/people" render={ () => <Card data={this.state.people}/> } />
+        <Route path="/planets" render={ () => <Card data={this.state.planets}/> } />
+        <Route path="/vehicles" render={ () => <Card data={this.state.vehicles}/> } />
+      </main>
     )
   }
-}
+
+  }
+
+
+  //   <div>
+  //     {/* {this.state.isLoaded && <button className="button--enter">ENTER</button> }  */}
+  //     <nav>
+  //       <h1>S W A P I - B O X</h1>
+  //       <ul>
+  //         <li>PEOPLE</li>
+  //         <li>PLANETS</li>
+  //         <li>VEHICLES</li>
+  //       </ul>
+  //     </nav>
+  //     <section className="app__section">
+  //       {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
+  //     </section>
+  //   </div>
+  //   )
+  // }
+
 
 export default App;
