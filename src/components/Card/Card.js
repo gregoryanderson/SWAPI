@@ -5,9 +5,12 @@ import './Card.css';
 
 const Card = ({ data }) => {
     console.log(data)
-  const displayCards = data.map(card => {
-    const {personLanguage, personName, personPlanet, personPlanetPopulation, personSpecies, vehicleClass, model, name, passengers, climate, population, terrain} = card;
-    return (
+    const displayCards = data.map(card => {
+        const {personLanguage, personName, personPlanet, personPlanetPopulation, personSpecies, vehicleClass, model, name, passengers, climate, population, terrain, residents} = card;
+        const displayResidents = residents.map(resident => {
+          return <p>{resident || null}</p>
+        })
+        return (
         <article className="card__article">
             <header className="card__header">
                 <h3>{personName || null }</h3>
@@ -15,6 +18,7 @@ const Card = ({ data }) => {
                 <img src='http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png' height='40px' width='40px' alt='Star Wars Favorite Button'/>
             </header>
             <div>
+                {console.log(residents)}
                 <p>{personPlanet || null}</p>
                 <p>{personSpecies || null}</p>
                 <p>{personPlanetPopulation|| null}</p>
@@ -24,8 +28,8 @@ const Card = ({ data }) => {
                 <p>{passengers || null}</p>
                 <p>{climate || null}</p>
                 <p>{population|| null}</p>
-                {/* <p>{residents || null}</p> */}
                 <p>{terrain || null}</p>
+                {displayResidents}
             </div>
         </article>
     )
