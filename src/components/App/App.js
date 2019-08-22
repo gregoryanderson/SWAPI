@@ -1,10 +1,7 @@
 import React, { Component }from 'react';
-import Main from '../Main/Main';
 import { Route, NavLink } from 'react-router-dom'
-import People from '../People/People';
-import Planets from '../Planets/Planets';
-import Vehicles from '../Vehicles/Vehicles';
 import Card from '../Card/Card';
+import Scroll from '../Scroll/Scroll';
 import './App.css';
 
 class App extends Component {
@@ -15,7 +12,7 @@ class App extends Component {
       planets: [],
       vehicles: [],
       hasError: '',
-      film: '',
+      films: [],
       isLoaded: false
     }
   }
@@ -42,7 +39,6 @@ class App extends Component {
     }
 
     fetchPlanetInfo = (planetInfo) => {
-      console.log('planet info', planetInfo)
       const planetPromises = planetInfo.map(planet => {
         const residents = planet.residents.map(resident => {
           return fetch(resident)
@@ -51,7 +47,6 @@ class App extends Component {
             .catch(err => console.log(err))
           })
         return Promise.all(residents)
-          // .then(res => res.json())
           .then(names => (
             {
             name: planet.name,
@@ -76,22 +71,26 @@ class App extends Component {
     }
 
     componentDidMount() {
-      fetch('https://swapi.co/api/people/')
-      .then(res => res.json())
-      .then(data => this.fetchPlanetInfoForPerson(data.results))
-      .then(personInfo => this.setState({people: personInfo.flat()}))
-      .then(fetch('https://swapi.co/api/planets/')
-      .then(res => res.json())
-      .then(data => this.fetchPlanetInfo(data.results))
-      .then(planetInfo => this.setState({planets: planetInfo})))
-      .then(fetch('https://swapi.co/api/vehicles/')
-      .then(res => res.json())
-      .then(data => this.identifyVehicleInfo(data.results))
-      .then(vehicleInfo => this.setState({vehicles: vehicleInfo, isLoaded: true})))
-      .catch(err => console.log(err))
-  }
+      fetch('https://swapi.co/api/films/')
+        .then(res => res.json())
+        .then(data => this.setState({films: data.results}))
+        .then(fetch('https://swapi.co/api/people/')
+        .then(res => res.json())
+        .then(data => this.fetchPlanetInfoForPerson(data.results))
+        .then(personInfo => this.setState({people: personInfo.flat()})))
+        .then(fetch('https://swapi.co/api/planets/')
+        .then(res => res.json())
+        .then(data => this.fetchPlanetInfo(data.results))
+        .then(planetInfo => this.setState({planets: planetInfo})))
+        .then(fetch('https://swapi.co/api/vehicles/')
+        .then(res => res.json())
+        .then(data => this.identifyVehicleInfo(data.results))
+        .then(vehicleInfo => this.setState({vehicles: vehicleInfo, isLoaded: true})))
+        .catch(err => console.log(err))
+    }
 
   render() {
+    console.log(this.state.films)
     return (
       <main className="App">
         <header className="header">
@@ -100,9 +99,12 @@ class App extends Component {
           <NavLink to="/planets" className="nav">PLANETS</NavLink>
           <NavLink to="/vehicles" className="nav">VEHICLES</NavLink>
         </header>
-        <Route path="/people" render={ () => <Card data={this.state.people}/> } />
-        <Route path="/planets" render={ () => <Card data={this.state.planets}/> } />
-        <Route path="/vehicles" render={ () => <Card data={this.state.vehicles}/> } />
+        {!!this.state.films.length && <Scroll film={this.state.films}/>}
+        <section>
+          <Route path="/people" render={ () => <Card data={this.state.people}/> } />
+          <Route path="/planets" render={ () => <Card data={this.state.planets}/> } />
+          <Route path="/vehicles" render={ () => <Card data={this.state.vehicles}/> } />
+        </section>
       </main>
     )
   }
@@ -110,22 +112,10 @@ class App extends Component {
   }
 
 
-  //   <div>
   //     {/* {this.state.isLoaded && <button className="button--enter">ENTER</button> }  */}
-  //     <nav>
-  //       <h1>S W A P I - B O X</h1>
-  //       <ul>
-  //         <li>PEOPLE</li>
-  //         <li>PLANETS</li>
-  //         <li>VEHICLES</li>
-  //       </ul>
-  //     </nav>
-  //     <section className="app__section">
+  //    
   //       {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
-  //     </section>
-  //   </div>
-  //   )
-  // }
+ 
 
 
 export default App;
