@@ -42,21 +42,26 @@ class App extends Component {
     }
 
     fetchPlanetInfo = (planetInfo) => {
-      const promises = planetInfo.map(planet => {
-          return {
+      console.log('planet info', planetInfo)
+      const planetPromises = planetInfo.map(planet => {
+        const residents = planet.residents.map(resident => {
+          return fetch(resident)
+            .then(res => res.json())
+            .then(data => data.name)
+            .catch(err => console.log(err))
+          })
+        return Promise.all(residents)
+          // .then(res => res.json())
+          .then(names => (
+            {
             name: planet.name,
             terrain: planet.terrain,
             population: planet.population,
             climate: planet.climate,
-            residents: planet.residents.map(resident => {
-              return fetch(resident)
-              .then(res => res.json())
-              .then(data => data.name)
-              .catch(err => console.log(err))
-            })
-          }
+            residents: names
+           }))
       })
-      return Promise.all(promises)
+      return Promise.all(planetPromises)
     }
 
     identifyVehicleInfo = (vehicleInfo) => {
@@ -78,7 +83,6 @@ class App extends Component {
       .then(fetch('https://swapi.co/api/planets/')
       .then(res => res.json())
       .then(data => this.fetchPlanetInfo(data.results))
-
       .then(planetInfo => this.setState({planets: planetInfo})))
       .then(fetch('https://swapi.co/api/vehicles/')
       .then(res => res.json())
@@ -88,7 +92,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <main className="App">
         <header className="header">

@@ -37,23 +37,6 @@ const Card = ({ data }) => {
   )
 }
 
-// climate: "temperate"
-// name: "Alderaan"
-// population: "2000000000"
-// residents: (3) [Promise, Promise, Promise]
-// terrain: "grasslands, mountains"
-
-// class: "wheeled"
-// model: "Digger Crawler"
-// name: "Sand Crawler"
-// passengers: "30"
-
-// personLanguage: "Galactic Basic"
-// personName: "Luke Skywalker"
-// personPlanet: "Tatooine"
-// personPlanetPopulation: "200000"
-// personSpecies: "Human"
-
 
 // function Card (props) {
 //     console.log('card', props)
