@@ -1,33 +1,58 @@
-.App {
-  text-align: center;
+@font-face {font-family: "STARWARS";
+  src: url("//db.onlinewebfonts.com/t/c00548f5d217ed324ae9096051927001.eot");
+  src: url("//db.onlinewebfonts.com/t/c00548f5d217ed324ae9096051927001.eot?#iefix") format("embedded-opentype"),
+  url("//db.onlinewebfonts.com/t/c00548f5d217ed324ae9096051927001.woff2") format("woff2"),
+  url("//db.onlinewebfonts.com/t/c00548f5d217ed324ae9096051927001.woff") format("woff"),
+  url("//db.onlinewebfonts.com/t/c00548f5d217ed324ae9096051927001.ttf") format("truetype"),
+  url("//db.onlinewebfonts.com/t/c00548f5d217ed324ae9096051927001.svg#STARWARS") format("svg");
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  font-family: 'STARWARS';
+  color: #F9E60A;
+  -webkit-text-stroke-width: .1px; 
+  -webkit-text-stroke-color: black; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+html {
+  background-image: url('http://static.hdw.eweb4.com/media/wallpapers_dl/1/111/1101575-lightsaber.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 1000px;
+}
+
+h1 {
+  font-size: 36px;
+  width: 50%;
+  margin-left: 10px;
+}
+
+nav {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+ul {
+  display: inline-flex;
+  list-style-type: none;
+  justify-content: space-around;
+  width: 50%;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+/* this is the symbol font family for if/when we wish to use it */
+
+/* @font-face {font-family: "StarWars  Kit";
+  src: url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.eot");
+  src: url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.eot?#iefix") format("embedded-opentype"),
+  url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.woff2") format("woff2"),
+  url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.woff") format("woff"),
+  url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.ttf") format("truetype"),
+  url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.svg#StarWars  Kit") format("svg");
+} */

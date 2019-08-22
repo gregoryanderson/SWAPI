@@ -91,14 +91,14 @@ class App extends Component {
     <div>
       {/* {this.state.isLoaded && <button className="button--enter">ENTER</button> }  */}
       <nav>
-        <h1>SWAPI-BOX</h1>
+        <h1>S W A P I - B O X</h1>
         <ul>
           <li>PEOPLE</li>
           <li>PLANETS</li>
           <li>VEHICLES</li>
         </ul>
       </nav>
-      <section>
+      <section className="app__section">
         {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
       </section>
     </div>
