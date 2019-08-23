@@ -1,5 +1,6 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
+import { MemoryRouter } from 'react-router';
 import App from "./App";
 
 describe("App", () => {
@@ -8,3 +9,16 @@ describe("App", () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
+
+
+describe("Router", () => {
+  it("should show the People page when people is selected", () => {
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <App/>
+      </MemoryRouter>
+    )
+    expect(wrapper.find(App)).toHaveLength(1);        
+  })
+});
+  
