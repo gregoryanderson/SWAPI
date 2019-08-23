@@ -98,21 +98,26 @@ class App extends Component {
     render() {
       console.log('favorites:', this.state.favorites)
       return (
-      <main className="App">
-        <header className="header">
-          <h1>S W A P I - B O X</h1>
-          <NavLink to="/people" className="nav">PEOPLE</NavLink>
-          <NavLink to="/planets" className="nav">PLANETS</NavLink>
-          <NavLink to="/vehicles" className="nav">VEHICLES</NavLink>
-          <NavLink to="/favorites" className="nav">FAVORITES</NavLink>
+      <main className="app">
+        <header className="nav__header">
+          <h1 className="nav__h1">S W A P I - B O X</h1>
+          <section className="nav__section--links">
+            <NavLink to="/people" className="nav__link">PEOPLE</NavLink>
+            <NavLink to="/planets" className="nav__link">PLANETS</NavLink>
+            <NavLink to="/vehicles" className="nav__link">VEHICLES</NavLink>
+            <div className="nav__div--favorites">
+              <NavLink to="/favorites" className="nav__link favorite__link">FAVORITES</NavLink>
+              <img className="favorite__image"src='http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png' height='20px' width='20px' />
+            </div>
+          </section>
         </header>
-        {!!this.state.films.length && <Scroll film={this.state.films}/>}
-        <section>
+        <section className="app__section">
           <Route path="/people" render={ () => <Card data={this.state.people} addFavorite={this.addFavorite} type={'people'}/> } />
           <Route path="/planets" render={ () => <Card data={this.state.planets} addFavorite={this.addFavorite} type={'planets'}/> } />
           <Route path="/vehicles" render={ () => <Card data={this.state.vehicles} addFavorite={this.addFavorite} type={'vehicles'}/> } />
           <Route path="/favorites" render={ () => <Card data={this.state.favorites} addFavorite={this.addFavorite}/> } />
         </section>
+        {!!this.state.films.length && <Scroll film={this.state.films}/>}
       </main>
     )
   }
