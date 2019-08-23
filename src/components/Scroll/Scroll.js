@@ -3,7 +3,6 @@ import React from 'react'
 const Scroll = (props) => {
   const randomNumber = Math.floor(Math.random() * props.film.length)
   const actualFilm = props.film[randomNumber]
-  console.log(actualFilm)
   return (
       <>
         <marquee behavior="scroll" direction="left">{actualFilm.opening_crawl}{actualFilm.title}{actualFilm.release_date}</marquee>
