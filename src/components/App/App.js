@@ -119,8 +119,12 @@ class App extends Component {
   addFavorite = (id, type) => {
     const favoritedCard = this.state[type].find(card => id.name == card.name);
     favoritedCard.isFavorite = !favoritedCard.isFavorite;
-    console.log('bananas', favoritedCard)
-    this.setState({ favorites: [...this.state.favorites, favoritedCard] });
+    if(favoritedCard.isFavorite === true){
+      this.setState({ favorites: [...this.state.favorites, favoritedCard] });
+    } else {
+      const filteredFavorites = this.state.favorites.filter(card => card.name !== favoritedCard.name)
+      this.setState({ favorites: filteredFavorites})
+    }
   };
 
   render() {
@@ -192,6 +196,7 @@ class App extends Component {
               <Card
                 data={this.state.favorites}
                 addFavorite={this.addFavorite}
+                type={"favorites"}
               />
             )}
           />
