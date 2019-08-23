@@ -15,7 +15,8 @@ class App extends Component {
       hasError: "",
       films: [],
       isLoaded: false,
-      favorites: []
+      favorites: [],
+      isFavorite: false
     };
   }
 
@@ -46,7 +47,8 @@ class App extends Component {
           personPlanet: personWorldInfo.name,
           personPlanetPopulation: personWorldInfo.population,
           personLanguage: data.language,
-          type: 'people'
+          type: 'people',
+          isFavorite: false
         }))
         .catch(err => console.log(err));
     });
@@ -67,7 +69,8 @@ class App extends Component {
         population: planet.population,
         climate: planet.climate,
         residents: names,
-        type: 'planets'
+        type: 'planets',
+        isFavorite: false
       }));
     });
     return Promise.all(planetPromises);
@@ -80,7 +83,8 @@ class App extends Component {
         model: vehicle.model,
         vehicleClass: vehicle.vehicle_class,
         passengers: vehicle.passengers,
-        type: 'vehicles'
+        type: 'vehicles',
+        isFavorite: false
       };
     });
   };
@@ -114,11 +118,12 @@ class App extends Component {
 
   addFavorite = (id, type) => {
     const favoritedCard = this.state[type].find(card => id.name == card.name);
+    favoritedCard.isFavorite = !favoritedCard.isFavorite;
+    console.log('bananas', favoritedCard)
     this.setState({ favorites: [...this.state.favorites, favoritedCard] });
   };
 
   render() {
-    console.log("favorites:", this.state.favorites);
     return (
       <main className="app">
         <header className="nav__header">
@@ -195,11 +200,9 @@ class App extends Component {
           <Route
             path="/people/:id"
             render={({ match }) => {
-              console.log("this is the match:", match);
               const foundPerson = this.state.people.find(
                 person => person.name === match.params.id
               );
-              console.log("this is the foundPerson:", foundPerson);
               return (
                 <SelectedCard
                   id={foundPerson.id}
@@ -212,11 +215,9 @@ class App extends Component {
           <Route
             path="/vehicles/:id"
             render={({ match }) => {
-              console.log("this is the match:", match);
               const foundVehicle = this.state.vehicles.find(
                 vehicle => vehicle.name === match.params.id
               );
-              console.log("this is the foundPerson:", foundVehicle);
               return (
                 <SelectedCard
                   id={foundVehicle.id}
@@ -229,11 +230,9 @@ class App extends Component {
           <Route
             path="/planets/:id"
             render={({ match }) => {
-              console.log("this is the match:", match);
               const foundPlanet = this.state.planets.find(
                 planet => planet.name === match.params.id
               );
-              console.log("this is the foundPlanet:", foundPlanet);
               return (
                 <SelectedCard
                   id={foundPlanet.id}
