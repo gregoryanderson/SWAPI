@@ -133,17 +133,17 @@ class App extends Component {
         <header className="nav__header">
           <h1 className="nav__h1">S W A P I - B O X</h1>
           <section className="nav__section--links">
-            <NavLink to="/people" className="nav__link">
+            <NavLink to="/people" className="nav__link" activeClassName="selected">
               PEOPLE
             </NavLink>
-            <NavLink to="/planets" className="nav__link">
+            <NavLink to="/planets" className="nav__link" activeClassName="selected">
               PLANETS
             </NavLink>
-            <NavLink to="/vehicles" className="nav__link">
+            <NavLink to="/vehicles" className="nav__link" activeClassName="selected">
               VEHICLES
             </NavLink>
             <div className="nav__div--favorites">
-              <NavLink to="/favorites" className="nav__link favorite__link">
+              <NavLink to="/favorites" className="nav__link favorite__link" activeClassName="selected">
                 FAVORITES
               </NavLink>
               <img

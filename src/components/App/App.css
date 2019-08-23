@@ -44,6 +44,10 @@ html {
   /* text-align: center; */
 }
 
+.selected{
+  color:#FF0200
+}
+
 .nav__link {
   display: block;
   padding-top: 2px;
