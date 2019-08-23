@@ -90,14 +90,14 @@ class App extends Component {
         .catch(err => console.log(err))
     }
 
-    addFavorite = (id) => {
-      console.log('apples', id);
-      
+    addFavorite = (id, type) => {
+      const favoritedCard = this.state[type].find(card => id.name == card.name)
+      this.setState({favorites: [...this.state.favorites, favoritedCard]})
     }
-
-  render() {
-    console.log(this.state.films)
-    return (
+    
+    render() {
+      console.log('favorites:', this.state.favorites)
+      return (
       <main className="App">
         <header className="header">
           <h1>S W A P I - B O X</h1>
@@ -108,9 +108,9 @@ class App extends Component {
         </header>
         {!!this.state.films.length && <Scroll film={this.state.films}/>}
         <section>
-          <Route path="/people" render={ () => <Card data={this.state.people} addFavorite={this.addFavorite}/> } />
-          <Route path="/planets" render={ () => <Card data={this.state.planets} addFavorite={this.addFavorite}/> } />
-          <Route path="/vehicles" render={ () => <Card data={this.state.vehicles} addFavorite={this.addFavorite}/> } />
+          <Route path="/people" render={ () => <Card data={this.state.people} addFavorite={this.addFavorite} type={'people'}/> } />
+          <Route path="/planets" render={ () => <Card data={this.state.planets} addFavorite={this.addFavorite} type={'planets'}/> } />
+          <Route path="/vehicles" render={ () => <Card data={this.state.vehicles} addFavorite={this.addFavorite} type={'vehicles'}/> } />
           <Route path="/favorites" render={ () => <Card data={this.state.favorites} addFavorite={this.addFavorite}/> } />
         </section>
       </main>
