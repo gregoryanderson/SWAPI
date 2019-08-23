@@ -7,7 +7,24 @@
     margin: 5px;
 }
 
-header {
+.card__header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card__h3 {
+    margin: 0;
+    font-size: 16px;
+    width:80%
+}
+
+.card__img {
+    width: 20%;
+}
+
+.card__p {
+    font-size: 14px;
+    text-align: center;
+    margin: 5px 0px;
 }

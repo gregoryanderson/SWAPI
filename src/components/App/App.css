@@ -24,24 +24,46 @@ html {
   height: 1000px;
 }
 
-h1 {
-  font-size: 36px;
-  width: 50%;
-  margin-left: 10px;
-}
-
-nav {
-  display: inline-flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
-ul {
-  display: inline-flex;
+/* nav bar */
+.nav__header {
   list-style-type: none;
   justify-content: space-around;
-  width: 50%;
   align-items: center;
+  display: inline-flex;
+  width: 100%;
+}
+
+.nav__h1 {
+  font-size: 50px;
+  margin: 30px 10px;
+  width: 100%;
+}
+
+.nav__section--links {
+  width: 100%;
+  /* text-align: center; */
+}
+
+.nav__link {
+  display: block;
+  padding-top: 2px;
+}
+
+.nav__div--favorites {
+  display: inline-flex;
+  align-items: center;
+}
+
+.favorite__link {
+  padding-right: 5px;
+} 
+
+/* card container */
+.app__section {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
 }
 
 

@@ -6,9 +6,7 @@ const Scroll = (props) => {
   console.log(actualFilm)
   return (
       <>
-        <marquee behavior="scroll" direction="left">{actualFilm.opening_crawl}</marquee>
-        <h4>{actualFilm.title}</h4>
-        <h4>{actualFilm.release_date}</h4>
+        <marquee behavior="scroll" direction="left">{actualFilm.opening_crawl}{actualFilm.title}{actualFilm.release_date}</marquee>
       </>
   )
 }
