@@ -7,6 +7,12 @@
     margin: 5px;
 }
 
+.card__div {
+    height: 150px;
+    /* display: flex; */
+    align-items: center;
+}
+
 .card__header {
     display: flex;
     justify-content: space-around;
@@ -24,7 +30,17 @@
 }
 
 .card__p {
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
-    margin: 5px 0px;
+    margin: 10px 0px;
+}
+
+.card__div--button {
+    display: flex; 
+    justify-content: center;
+}
+
+.card__button {
+    background-color: black;
+    padding: 5px;
 }
