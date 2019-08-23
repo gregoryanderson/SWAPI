@@ -13,7 +13,8 @@ class App extends Component {
       vehicles: [],
       hasError: '',
       films: [],
-      isLoaded: false
+      isLoaded: false,
+      favorites: []
     }
   }
 
@@ -32,7 +33,7 @@ class App extends Component {
       const promises = personWorldInfo.personSpecies.map(species => {
         return fetch(personWorldInfo.personSpecies[0])
         .then(res => res.json())
-        .then(data => ({personName: personWorldInfo.personName, personSpecies: data.name, personPlanet: personWorldInfo.name, personPlanetPopulation: personWorldInfo.population, personLanguage: data.language}))
+        .then(data => ({name: personWorldInfo.personName, personSpecies: data.name, personPlanet: personWorldInfo.name, personPlanetPopulation: personWorldInfo.population, personLanguage: data.language}))
         .catch(err => console.log(err))
       })
       return Promise.all(promises)
@@ -89,6 +90,11 @@ class App extends Component {
         .catch(err => console.log(err))
     }
 
+    addFavorite = (id) => {
+      console.log('apples', id);
+      
+    }
+
   render() {
     console.log(this.state.films)
     return (
@@ -98,12 +104,14 @@ class App extends Component {
           <NavLink to="/people" className="nav">PEOPLE</NavLink>
           <NavLink to="/planets" className="nav">PLANETS</NavLink>
           <NavLink to="/vehicles" className="nav">VEHICLES</NavLink>
+          <NavLink to="/favorites" className="nav">FAVORITES</NavLink>
         </header>
         {!!this.state.films.length && <Scroll film={this.state.films}/>}
         <section>
-          <Route path="/people" render={ () => <Card data={this.state.people}/> } />
-          <Route path="/planets" render={ () => <Card data={this.state.planets}/> } />
-          <Route path="/vehicles" render={ () => <Card data={this.state.vehicles}/> } />
+          <Route path="/people" render={ () => <Card data={this.state.people} addFavorite={this.addFavorite}/> } />
+          <Route path="/planets" render={ () => <Card data={this.state.planets} addFavorite={this.addFavorite}/> } />
+          <Route path="/vehicles" render={ () => <Card data={this.state.vehicles} addFavorite={this.addFavorite}/> } />
+          <Route path="/favorites" render={ () => <Card data={this.state.favorites} addFavorite={this.addFavorite}/> } />
         </section>
       </main>
     )

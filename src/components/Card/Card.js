@@ -2,19 +2,18 @@ import React from 'react';
 import './Card.css';
 
 
-const Card = ({ data }) => {
-    console.log(data)
+const Card = ({ data, addFavorite }) => {
+    console.log('pear', addFavorite)
     const displayCards = data.map(card => {
-        const {personLanguage, personName, personPlanet, personPlanetPopulation, personSpecies, vehicleClass, model, name, passengers, climate, population, terrain, residents} = card;
-        const displayResidents = residents.map(resident => {
-          return <p className="resident">{resident || null}</p>
-        })
+        const {personLanguage, name, personPlanet, personPlanetPopulation, personSpecies, vehicleClass, model, passengers, climate, population, terrain, residents, id} = card;
+        // if (residents) {const displayResidents = residents.map(resident => {
+        //   return <p className="resident">{resident || null}</p>
+        // })}
         return (
-        <article className="card__article">
+        <article className="card__article" id={name}>
             <header className="card__header">
-                <h3>{personName || null }</h3>
                 <h3>{name || null}</h3>
-                <img src='http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png' height='40px' width='40px' alt='Star Wars Favorite Button'/>
+                <img src='http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png' height='40px' width='40px' alt='Star Wars Favorite Button' onClick={() => addFavorite({name})}/>
             </header>
             <div>
                 <p>{personPlanet || null}</p>
@@ -27,7 +26,7 @@ const Card = ({ data }) => {
                 <p>{climate || null}</p>
                 <p>{population || null}</p>
                 <p>{terrain || null}</p>
-                {displayResidents}
+                <p>{residents || null}</p>
             </div>
         </article>
     )
