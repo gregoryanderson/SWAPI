@@ -41,7 +41,14 @@ html {
 
 .nav__section--links {
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   /* text-align: center; */
+}
+
+.selected{
+  color:#FF0200
 }
 
 .nav__link {
@@ -50,12 +57,13 @@ html {
 }
 
 .nav__div--favorites {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
 }
 
 .favorite__link {
-  padding-right: 5px;
+  padding-right: 7px;
 } 
 
 /* card container */
