@@ -133,6 +133,9 @@ class App extends Component {
         <header className="nav__header">
           <h1 className="nav__h1">S W A P I - B O X</h1>
           <section className="nav__section--links">
+            <NavLink to="/home" className="nav__link" activeClassName="selected">
+              HOME
+            </NavLink>
             <NavLink to="/people" className="nav__link" activeClassName="selected">
               PEOPLE
             </NavLink>
@@ -144,17 +147,18 @@ class App extends Component {
             </NavLink>
             <div className="nav__div--favorites">
               <NavLink to="/favorites" className="nav__link favorite__link" activeClassName="selected">
-                FAVORITES
+                FAVORITES <span>{this.state.favorites.length}</span>
               </NavLink>
               <img
                 className="favorite__image"
                 src="http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png"
-                height="20px"
-                width="20px"
+                height="35px"
+                width="35px"
               />
             </div>
           </section>
         </header>
+        {!!this.state.films.length && <Scroll film={this.state.films} />}
         <section className="app__section">
           <Route
             exact
@@ -248,7 +252,6 @@ class App extends Component {
             }}
           />
         </section>
-        {!!this.state.films.length && <Scroll film={this.state.films} />}
       </main>
     );
   }
