@@ -10,6 +10,32 @@ describe("App", () => {
     const wrapper = <App />;
     expect(wrapper).toMatchSnapshot();
   });
+
+
+  //   it('should update state with a favorite when addFavorite is called', () => {
+  //     const wrapper = shallow(<App />);
+  //     const mockPeopleData = [{ 
+  //         "name": "Luke Skywalker", 
+  //         "homeworld": "https://swapi.co/api/planets/1/", 
+  //         "species": [
+  //             "https://swapi.co/api/species/1/"],
+  //         "isFavorite": false
+  //     }];
+
+  //     wrapper.instance().setState({people: mockPeopleData});
+  //     wrapper.instance().setState({favorites: []})
+  //     wrapper.instance().addFavorite({name: "luke Skywalker"}, "people")
+  //     console.log(wrapper.instance())
+  //     expect(wrapper.state('favorites')).toEqual([ 
+  //       {
+  //       "name": "Luke Skywalker", 
+  //       "homeworld": "https://swapi.co/api/planets/1/", 
+  //       "species": [
+  //           "https://swapi.co/api/species/1/"]
+  //       }
+  //     ]
+  //   );
+  // });
 });
 
 

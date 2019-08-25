@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should match the snapshot with all the data passed through 1`] = `
+<Card
+  addFavorite={[MockFunction]}
+  data={
+    Object {
+      "isFavorite": false,
+      "name": "Luke Skywalker",
+      "personLanguage": "Galatic Basic",
+      "personPlanet": "Tatooine",
+      "personPlanetPopulation": "200000",
+      "personSpecies": "Human",
+      "type": "people",
+    }
+  }
+  type="people"
+/>
+`;
