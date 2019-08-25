@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import './Card.css';
 
 
@@ -48,3 +49,8 @@ const Card = ({ data, addFavorite, type }) => {
 
 export default Card;
 
+Card.propTypes = {
+  addFavorite: PropTypes.func,
+  data: PropTypes.array,
+  type: PropTypes.string
+}

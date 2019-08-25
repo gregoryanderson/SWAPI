@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, NavLink } from "react-router-dom";
 import Card from "../Card/Card";
 import Scroll from "../Scroll/Scroll";
+import PropTypes from 'prop-types'
 import SelectedCard from "../SelectedCard/SelectedCard";
 import "./App.css";
 
@@ -262,3 +263,7 @@ class App extends Component {
 //       {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
 
 export default App;
+
+
+App.propTypes = {
+}
