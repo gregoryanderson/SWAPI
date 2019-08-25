@@ -12,30 +12,44 @@ describe("App", () => {
   });
 
 
-  //   it('should update state with a favorite when addFavorite is called', () => {
-  //     const wrapper = shallow(<App />);
-  //     const mockPeopleData = [{ 
-  //         "name": "Luke Skywalker", 
-  //         "homeworld": "https://swapi.co/api/planets/1/", 
-  //         "species": [
-  //             "https://swapi.co/api/species/1/"],
-  //         "isFavorite": false
-  //     }];
+    it('should update state with a favorite when addFavorite is called', () => {
+      const wrapper = shallow(<App />);
+      const mockPeopleData = [
+      {
+      isFavorite: false,
+      name: "Luke Skywalker",
+      personLanguage: "Galatic Basic", 
+      personPlanet: "Tatooine",
+      personPlanetPopulation: "200000",
+      personSpecies: "Human",
+      type: "people"
+      },
+      {
+      isFavorite: false,
+      name: "R2-D2",
+      personLanguage: "n/a", 
+      personPlanet: "Naboo",
+      personPlanetPopulation: "4500000",
+      personSpecies: "Droid",
+      type: "people"
+      }];
 
-  //     wrapper.instance().setState({people: mockPeopleData});
-  //     wrapper.instance().setState({favorites: []})
-  //     wrapper.instance().addFavorite({name: "luke Skywalker"}, "people")
-  //     console.log(wrapper.instance())
-  //     expect(wrapper.state('favorites')).toEqual([ 
-  //       {
-  //       "name": "Luke Skywalker", 
-  //       "homeworld": "https://swapi.co/api/planets/1/", 
-  //       "species": [
-  //           "https://swapi.co/api/species/1/"]
-  //       }
-  //     ]
-  //   );
-  // });
+      wrapper.instance().setState({people: mockPeopleData});
+      wrapper.instance().setState({favorites: []})
+      wrapper.instance().addFavorite({name: "Luke Skywalker"}, "people")
+      expect(wrapper.state('favorites')).toEqual([ 
+        {
+          isFavorite: true,
+          name: "Luke Skywalker",
+          personLanguage: "Galatic Basic", 
+          personPlanet: "Tatooine",
+          personPlanetPopulation: "200000",
+          personSpecies: "Human",
+          type: "people"
+          }
+      ]
+    );
+  });
 });
 
 
