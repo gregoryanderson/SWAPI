@@ -30,4 +30,27 @@ describe("Card", () => {
       />);
       expect(wrapper).toMatchSnapshot();
     });
+
+    it("should fire the addFavorite method when the favorite button is clicked", () => {
+      const handleFavoriteMock = jest.fn();
+      const fakePeopleData = [{
+        isFavorite: false,
+        name: "Luke Skywalker",
+        personLanguage: "Galatic Basic", 
+        personPlanet: "Tatooine",
+        personPlanetPopulation: "200000",
+        personSpecies: "Human",
+        type: "people"
+      }]
+      const wrapper = shallow(<Card 
+        data={fakePeopleData}
+        addFavorite={handleFavoriteMock}
+        type="people"
+      />)
+
+      wrapper.find('.card__button-favorite').simulate('click');
+      expect(handleFavoriteMock).toBeCalledWith({name: 'Luke Skywalker'}, "people");
+
+
+    })
 })

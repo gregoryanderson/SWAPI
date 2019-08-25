@@ -16,7 +16,7 @@ const Card = ({ data, addFavorite, type }) => {
       <article className="card__article" id={name} type={type}>
         <header className="card__header">
           <h3 className="card__h3">{name || null}</h3>
-          <img src={card.isFavorite ? inactiveFavoritesImage : activeFavoritesImage} height='40px' width='40px' alt='Star Wars Favorite Button' onClick={() => addFavorite({name}, type)}/>
+          <img className="card__button-favorite" src={card.isFavorite ? inactiveFavoritesImage : activeFavoritesImage} height='40px' width='40px' alt='Star Wars Favorite Button' onClick={() => addFavorite({name}, type)}/>
         </header>
         <div className="card__div">
           <p className="card__p">{personPlanet || null}</p>
