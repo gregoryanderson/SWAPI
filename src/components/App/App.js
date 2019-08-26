@@ -215,9 +215,7 @@ class App extends Component {
               );
               return (
                 <SelectedCard
-                  id={foundPerson.id}
-                  name={foundPerson.name}
-                  type={foundPerson.type}
+                  data={foundPerson}
                 />
               );
             }}
@@ -227,12 +225,10 @@ class App extends Component {
             render={({ match }) => {
               const foundVehicle = this.state.vehicles.find(
                 vehicle => vehicle.name === match.params.id
-              );
-              return (
-                <SelectedCard
-                  id={foundVehicle.id}
-                  name={foundVehicle.name}
-                  type={foundVehicle.type}
+                );
+                return (
+                  <SelectedCard
+                  data={foundVehicle}
                 />
               );
             }}
@@ -242,12 +238,10 @@ class App extends Component {
             render={({ match }) => {
               const foundPlanet = this.state.planets.find(
                 planet => planet.name === match.params.id
-              );
+                );
               return (
                 <SelectedCard
-                  id={foundPlanet.id}
-                  name={foundPlanet.name}
-                  type={foundPlanet.type}
+                  data={foundPlanet}
                 />
               );
             }}
