@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scroll should match the snapsot with all data passed through 1`] = `
+<Fragment>
+  <marquee
+    behavior="scroll"
+    direction="left"
+  />
+</Fragment>
+`;

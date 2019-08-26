@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Scroll = (props) => {
+  console.log(props)
   const randomNumber = Math.floor(Math.random() * props.film.length)
   const actualFilm = props.film[randomNumber]
   return (
