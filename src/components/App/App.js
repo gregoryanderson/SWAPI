@@ -136,7 +136,7 @@ class App extends Component {
         <header className="nav__header">
           <h1 className="nav__h1">S W A P I - B O X</h1>
           <section className="nav__section--links">
-            <NavLink to="/home" className="nav__link" activeClassName="selected">
+            <NavLink exact to="/" className="nav__link" activeClassName="selected">
               HOME
             </NavLink>
             <NavLink to="/people" className="nav__link" activeClassName="selected">
@@ -166,6 +166,13 @@ class App extends Component {
 
 
         {!!this.state.films.length && <Scroll film={this.state.films} />}
+          <Route 
+            exact
+            path='/'
+            render={() => (
+              <h1 className="home__h1">Select a link from the nav bar above to display some sweet Star Wars stuff</h1>
+            )}
+            />
         <section className="app__section">
           <Route
             exact
