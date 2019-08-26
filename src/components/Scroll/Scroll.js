@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types'
 
 const Scroll = (props) => {
   console.log(props)
@@ -12,3 +13,7 @@ const Scroll = (props) => {
 }
 
 export default Scroll
+
+Scroll.propTypes = {
+  films: PropTypes.array
+}

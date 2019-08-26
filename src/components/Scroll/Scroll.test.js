@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Scroll from './Scroll';
+import { exportAllDeclaration } from "@babel/types";
 
 describe('Scroll', () => {
     it('should match the snapsot with all data passed through', () => {
