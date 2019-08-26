@@ -8,6 +8,9 @@ import './Card.css';
 const Card = ({ data, addFavorite, type }) => {
   const inactiveFavoritesImage = 'https://vignette.wikia.nocookie.net/starwars/images/0/0e/Whitestarbird.svg/revision/latest?cb=20080310230901';
   const activeFavoritesImage = 'http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png';
+  if (type === "favorites" && data.length === 0){ 
+   return (<h1 className="favorite__header">Choose a favorite by picking on a card's red badge</h1>)
+  } else {
   const displayCards = data.map(card => {
     const {personLanguage, name, personPlanet, personPlanetPopulation, personSpecies, vehicleClass, model, passengers, climate, population, terrain, residents} = card;
       // if (residents) {const displayResidents = residents.map(resident => {
@@ -44,7 +47,7 @@ const Card = ({ data, addFavorite, type }) => {
     <>
       {displayCards}
     </>
-  )
+  )}
 }
 
 export default Card;

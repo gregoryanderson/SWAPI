@@ -162,9 +162,6 @@ class App extends Component {
           </section>
         </header>
         {/* {!this.state.isLoaded && <img className="loading" src={loading}/> } */}
-
-
-
         {!!this.state.films.length && <Scroll film={this.state.films} />}
           <Route 
             exact
@@ -211,6 +208,7 @@ class App extends Component {
             exact
             path="/favorites"
             render={() => (
+              // {!!this.state.favorites.length && <h1>ADD A FAVORITO</h1>}
               <Card
                 data={this.state.favorites}
                 addFavorite={this.addFavorite}
