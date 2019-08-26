@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types'
 
 const Scroll = (props) => {
+  console.log(props)
   const randomNumber = Math.floor(Math.random() * props.film.length)
   const actualFilm = props.film[randomNumber]
   return (
@@ -11,3 +13,7 @@ const Scroll = (props) => {
 }
 
 export default Scroll
+
+Scroll.propTypes = {
+  film: PropTypes.array
+}
