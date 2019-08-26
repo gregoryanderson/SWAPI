@@ -15,5 +15,5 @@ const Scroll = (props) => {
 export default Scroll
 
 Scroll.propTypes = {
-  films: PropTypes.array
+  film: PropTypes.array
 }
