@@ -113,21 +113,21 @@ class App extends Component {
           .then(vehicleInfo =>
             this.setState({ vehicles: vehicleInfo, isLoaded: true })
           )
-      )
-      .catch(err => console.log(err));
-  }
-
-  addFavorite = (id, type) => {
-    const favoritedCard = this.state[type].find(card => id.name == card.name);
-    favoritedCard.isFavorite = !favoritedCard.isFavorite;
-    if(favoritedCard.isFavorite === true){
-      this.setState({ favorites: [...this.state.favorites, favoritedCard] });
-    } else {
-      const filteredFavorites = this.state.favorites.filter(card => card.name !== favoritedCard.name)
-      this.setState({ favorites: filteredFavorites})
-    }
-  };
-
+          )
+          .catch(err => console.log(err));
+        }
+        
+        addFavorite = (id, type) => {
+          const favoritedCard = this.state[type].find(card => id.name == card.name);
+          favoritedCard.isFavorite = !favoritedCard.isFavorite;
+          if(favoritedCard.isFavorite === true){
+            this.setState({ favorites: [...this.state.favorites, favoritedCard] });
+          } else {
+            const filteredFavorites = this.state.favorites.filter(card => card.name !== favoritedCard.name)
+            this.setState({ favorites: filteredFavorites})
+          }
+        };
+        
   render() {
     return (
       <main className="app">
@@ -170,8 +170,8 @@ class App extends Component {
                 addFavorite={this.addFavorite}
                 type={"people"}
               />
-            )}
-          />
+              )}
+              />
           <Route
             exact
             path="/planets"
@@ -252,8 +252,7 @@ class App extends Component {
   }
 }
 
-//     {/* {this.state.isLoaded && <button className="button--enter">ENTER</button> }  */}
-//
+//        {this.state.isLoaded && <button className="button--enter">ENTER</button> }
 //       {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
 
 export default App;

@@ -99,6 +99,15 @@ describe("Router", () => {
     expect(wrapper.find(SelectedCard)).toHaveLength(0);        
   })
 
+  it("should show the homepage when an incorrect URL is entered", () => {
+    const wrapper = mount(
+      <MemoryRouter initialEntries={[ '/yolo' ]}>
+        <App/>
+      </MemoryRouter>
+    )
+    expect(wrapper.find(Card)).toHaveLength(0);        
+  })
+
   // it("should show a vehicles's page when a vehicle card is selected", () => {
   
   //   const wrapper = mount(
