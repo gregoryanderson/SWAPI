@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './SelectedCard.css'
+import './SelectedCard.css';
+import PropTypes from 'prop-types'
 
 const SelectedCard = ({ id, name, type }) => {
-    console.log(type)
     return (
       <div className="selected__div">
         <Link to={`/${type}`} className='back-btn'>◀ back</Link>
@@ -16,3 +16,9 @@ const SelectedCard = ({ id, name, type }) => {
   }
 
 export default SelectedCard;
+
+SelectedCard.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string, 
+  type: PropTypes.string
+}
