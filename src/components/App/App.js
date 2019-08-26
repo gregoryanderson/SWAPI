@@ -4,6 +4,7 @@ import Card from "../Card/Card";
 import Scroll from "../Scroll/Scroll";
 import PropTypes from 'prop-types'
 import SelectedCard from "../SelectedCard/SelectedCard";
+import loading2 from '../../Images/loading2.svg.gif'
 import "./App.css";
 
 class App extends Component {
@@ -52,7 +53,7 @@ class App extends Component {
           isFavorite: false
         }))
         .catch(err => console.log(err));
-    });
+      });
     return Promise.all(promises);
   };
 
@@ -113,24 +114,25 @@ class App extends Component {
           .then(vehicleInfo =>
             this.setState({ vehicles: vehicleInfo, isLoaded: true })
           )
-      )
-      .catch(err => console.log(err));
-  }
-
-  addFavorite = (id, type) => {
-    const favoritedCard = this.state[type].find(card => id.name == card.name);
-    favoritedCard.isFavorite = !favoritedCard.isFavorite;
-    if(favoritedCard.isFavorite === true){
-      this.setState({ favorites: [...this.state.favorites, favoritedCard] });
-    } else {
-      const filteredFavorites = this.state.favorites.filter(card => card.name !== favoritedCard.name)
-      this.setState({ favorites: filteredFavorites})
-    }
-  };
-
+          )
+          .catch(err => console.log(err));
+        }
+        
+        addFavorite = (id, type) => {
+          const favoritedCard = this.state[type].find(card => id.name == card.name);
+          favoritedCard.isFavorite = !favoritedCard.isFavorite;
+          if(favoritedCard.isFavorite === true){
+            this.setState({ favorites: [...this.state.favorites, favoritedCard] });
+          } else {
+            const filteredFavorites = this.state.favorites.filter(card => card.name !== favoritedCard.name)
+            this.setState({ favorites: filteredFavorites})
+          }
+        };
+        
   render() {
     return (
       <main className="app">
+        {!this.state.isLoaded && <img className="loading" src={loading2}/> }
         <header className="nav__header">
           <h1 className="nav__h1">S W A P I - B O X</h1>
           <section className="nav__section--links">
@@ -155,10 +157,14 @@ class App extends Component {
                 src="http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png"
                 height="35px"
                 width="35px"
-              />
+                />
             </div>
           </section>
         </header>
+        {/* {!this.state.isLoaded && <img className="loading" src={loading}/> } */}
+
+
+
         {!!this.state.films.length && <Scroll film={this.state.films} />}
         <section className="app__section">
           <Route
@@ -170,8 +176,8 @@ class App extends Component {
                 addFavorite={this.addFavorite}
                 type={"people"}
               />
-            )}
-          />
+              )}
+              />
           <Route
             exact
             path="/planets"
@@ -215,9 +221,7 @@ class App extends Component {
               );
               return (
                 <SelectedCard
-                  id={foundPerson.id}
-                  name={foundPerson.name}
-                  type={foundPerson.type}
+                  data={foundPerson}
                 />
               );
             }}
@@ -227,12 +231,10 @@ class App extends Component {
             render={({ match }) => {
               const foundVehicle = this.state.vehicles.find(
                 vehicle => vehicle.name === match.params.id
-              );
-              return (
-                <SelectedCard
-                  id={foundVehicle.id}
-                  name={foundVehicle.name}
-                  type={foundVehicle.type}
+                );
+                return (
+                  <SelectedCard
+                  data={foundVehicle}
                 />
               );
             }}
@@ -242,12 +244,10 @@ class App extends Component {
             render={({ match }) => {
               const foundPlanet = this.state.planets.find(
                 planet => planet.name === match.params.id
-              );
+                );
               return (
                 <SelectedCard
-                  id={foundPlanet.id}
-                  name={foundPlanet.name}
-                  type={foundPlanet.type}
+                  data={foundPlanet}
                 />
               );
             }}
@@ -258,8 +258,6 @@ class App extends Component {
   }
 }
 
-//     {/* {this.state.isLoaded && <button className="button--enter">ENTER</button> }  */}
-//
 //       {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
 
 export default App;

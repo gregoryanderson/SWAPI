@@ -5,10 +5,12 @@ import { exportAllDeclaration } from "@babel/types";
 
 describe("SelectedCard", () => {
     it("should match the snapshot with all the data passed through", () => {
+        const mockData = {
+          name: 'Darth Vader',
+          type: 'people'
+        }
         const wrapper= shallow(<SelectedCard 
-            id= {6}
-            name={'Darth Vader'}
-            type = {'people'}
+            data={mockData}
             />)
         expect(wrapper).toMatchSnapshot();
     })
