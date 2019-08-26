@@ -4,6 +4,7 @@ import Card from "../Card/Card";
 import Scroll from "../Scroll/Scroll";
 import PropTypes from 'prop-types'
 import SelectedCard from "../SelectedCard/SelectedCard";
+import loading2 from '../../Images/loading2.svg.gif'
 import "./App.css";
 
 class App extends Component {
@@ -52,7 +53,7 @@ class App extends Component {
           isFavorite: false
         }))
         .catch(err => console.log(err));
-    });
+      });
     return Promise.all(promises);
   };
 
@@ -131,6 +132,7 @@ class App extends Component {
   render() {
     return (
       <main className="app">
+        {!this.state.isLoaded && <img className="loading" src={loading2}/> }
         <header className="nav__header">
           <h1 className="nav__h1">S W A P I - B O X</h1>
           <section className="nav__section--links">
@@ -155,10 +157,14 @@ class App extends Component {
                 src="http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png"
                 height="35px"
                 width="35px"
-              />
+                />
             </div>
           </section>
         </header>
+        {/* {!this.state.isLoaded && <img className="loading" src={loading}/> } */}
+
+
+
         {!!this.state.films.length && <Scroll film={this.state.films} />}
         <section className="app__section">
           <Route
@@ -252,7 +258,6 @@ class App extends Component {
   }
 }
 
-//        {this.state.isLoaded && <button className="button--enter">ENTER</button> }
 //       {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
 
 export default App;

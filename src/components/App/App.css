@@ -36,7 +36,8 @@ html {
 .nav__h1 {
   font-size: 50px;
   margin: 30px 0px 30px 40px;
-  width: 100%;
+  /* width: 100%; */
+  min-width: 600px;
 }
 
 .nav__section--links {
@@ -80,7 +81,16 @@ html {
   justify-content: center;
 }
 
+.loading{
+  background-size: cover;
+  height: 100%;
+  width: 100%
+}
 
+/* //media queries */
+/* .nav__header{
+  display: inline-flex;
+} */
 
 /* this is the symbol font family for if/when we wish to use it */
 
