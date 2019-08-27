@@ -1,11 +1,11 @@
 .selected__div {
-    align-items: center;
-    width: 30%;
-    height: 300px;
-    margin: 0px 5px;
-    border-radius: 5px;
-    background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20190510/pngtree-starry-sky-white-blue-stars-image_111634.jpg');
-    background-size: cover;
-    border: 3px solid black;
-  }
+  align-items: center;
+  background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20190510/pngtree-starry-sky-white-blue-stars-image_111634.jpg');
+  background-size: cover;
+  border-radius: 5px;
+  border: 3px solid black;
+  height: 300px;
+  margin: 0px 5px;
+  width: 30%;
+}
   

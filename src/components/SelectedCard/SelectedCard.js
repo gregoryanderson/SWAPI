@@ -4,9 +4,7 @@ import './SelectedCard.css';
 import PropTypes from 'prop-types'
 
 const SelectedCard = ({ data }) => {
-  console.log(data)
   const {name, type} = data
-  console.log(name, type)
     return (
       <div className="selected__div">
         <Link to={`/${type}`} className='back-btn'>◀ back</Link>

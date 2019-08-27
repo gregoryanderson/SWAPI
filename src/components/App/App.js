@@ -263,6 +263,4 @@ class App extends Component {
   }
 }
 
-//       {this.state.isLoaded && <Main people={this.state.people} vehicles={this.state.vehicles} planets={this.state.planets}/>}
-
 export default App;
