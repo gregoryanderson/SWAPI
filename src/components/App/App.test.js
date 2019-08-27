@@ -12,9 +12,9 @@ describe("App", () => {
   });
 
 
-    it('should update state with a favorite when addFavorite is called', () => {
-      const wrapper = shallow(<App />);
-      const mockPeopleData = [
+  it('should update state with a favorite when addFavorite is called', () => {
+    const wrapper = shallow(<App />);
+    const mockPeopleData = [
       {
       isFavorite: false,
       name: "Luke Skywalker",
@@ -34,20 +34,20 @@ describe("App", () => {
       type: "people"
       }];
 
-      wrapper.instance().setState({people: mockPeopleData});
-      wrapper.instance().setState({favorites: []})
-      wrapper.instance().addFavorite({name: "Luke Skywalker"}, "people")
-      expect(wrapper.state('favorites')).toEqual([ 
-        {
-          isFavorite: true,
-          name: "Luke Skywalker",
-          personLanguage: "Galatic Basic", 
-          personPlanet: "Tatooine",
-          personPlanetPopulation: "200000",
-          personSpecies: "Human",
-          type: "people"
-          }
-      ]
+    wrapper.instance().setState({people: mockPeopleData});
+    wrapper.instance().setState({favorites: []})
+    wrapper.instance().addFavorite({name: "Luke Skywalker"}, "people")
+    expect(wrapper.state('favorites')).toEqual([ 
+      {
+        isFavorite: true,
+        name: "Luke Skywalker",
+        personLanguage: "Galatic Basic", 
+        personPlanet: "Tatooine",
+        personPlanetPopulation: "200000",
+        personSpecies: "Human",
+        type: "people"
+      }
+    ]
     );
   });
 });
