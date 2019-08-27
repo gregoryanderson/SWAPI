@@ -28,8 +28,8 @@ npm test
 ```
 
 ## Developers
- - (Gregory Anderson)[@gregoryanderson]
- - (Alyssa Lundgren)[@lundgrea]
+ - [Gregory Anderson](@gregoryanderson)
+ - [Alyssa Lundgren](@lundgrea)
 
 ## Screenshots
 ![](src/Images/Screenshot-1.png)
