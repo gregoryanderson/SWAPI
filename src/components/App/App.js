@@ -4,7 +4,8 @@ import Card from "../Card/Card";
 import Scroll from "../Scroll/Scroll";
 import PropTypes from 'prop-types'
 import SelectedCard from "../SelectedCard/SelectedCard";
-import loading2 from '../../Images/loading2.svg.gif'
+import loading2 from '../../Images/loading2.svg.gif';
+import fetchCalls from '../apiFetchCalls/apiFetchCalls';
 import "./App.css";
 
 class App extends Component {
@@ -22,101 +23,109 @@ class App extends Component {
     };
   }
 
-  fetchPlanetInfoForPerson = peopleInfo => {
-    const promises = peopleInfo.map(person => {
-      return fetch(person.homeworld)
-        .then(res => res.json())
-        .then(data => ({
-          ...data,
-          personName: person.name,
-          personSpecies: person.species
-        }))
-        .then(personAndWorldData =>
-          this.fetchSpeciesInfoForPerson(personAndWorldData)
-        )
-        .catch(err => console.log(err));
-    });
-    return Promise.all(promises);
-  };
+  // fetchPlanetInfoForPerson = peopleInfo => {
+  //   const promises = peopleInfo.map(person => {
+  //     return fetch(person.homeworld)
+  //       .then(res => res.json())
+  //       .then(data => ({
+  //         ...data,
+  //         personName: person.name,
+  //         personSpecies: person.species
+  //       }))
+  //       .then(personAndWorldData =>
+  //         this.fetchSpeciesInfoForPerson(personAndWorldData)
+  //       )
+  //       .catch(err => console.log(err));
+  //   });
+  //   return Promise.all(promises);
+  // };
 
-  fetchSpeciesInfoForPerson = personWorldInfo => {
-    const promises = personWorldInfo.personSpecies.map(species => {
-      return fetch(personWorldInfo.personSpecies[0])
-        .then(res => res.json())
-        .then(data => ({
-          name: personWorldInfo.personName,
-          personSpecies: data.name,
-          personPlanet: personWorldInfo.name,
-          personPlanetPopulation: personWorldInfo.population,
-          personLanguage: data.language,
-          type: 'people',
-          isFavorite: false
-        }))
-        .catch(err => console.log(err));
-      });
-    return Promise.all(promises);
-  };
+  // fetchSpeciesInfoForPerson = personWorldInfo => {
+  //   const promises = personWorldInfo.personSpecies.map(species => {
+  //     return fetch(personWorldInfo.personSpecies[0])
+  //       .then(res => res.json())
+  //       .then(data => ({
+  //         name: personWorldInfo.personName,
+  //         personSpecies: data.name,
+  //         personPlanet: personWorldInfo.name,
+  //         personPlanetPopulation: personWorldInfo.population,
+  //         personLanguage: data.language,
+  //         type: 'people',
+  //         isFavorite: false
+  //       }))
+  //       .catch(err => console.log(err));
+  //     });
+  //   return Promise.all(promises);
+  // };
 
-  fetchPlanetInfo = planetInfo => {
-    const planetPromises = planetInfo.map(planet => {
-      const residents = planet.residents.map(resident => {
-        return fetch(resident)
-          .then(res => res.json())
-          .then(data => data.name)
-          .catch(err => console.log(err));
-      });
-      return Promise.all(residents).then(names => ({
-        name: planet.name,
-        terrain: planet.terrain,
-        population: planet.population,
-        climate: planet.climate,
-        residents: names,
-        type: 'planets',
-        isFavorite: false
-      }));
-    });
-    return Promise.all(planetPromises);
-  };
+  // fetchPlanetInfo = planetInfo => {
+  //   const planetPromises = planetInfo.map(planet => {
+  //     const residents = planet.residents.map(resident => {
+  //       return fetch(resident)
+  //         .then(res => res.json())
+  //         .then(data => data.name)
+  //         .catch(err => console.log(err));
+  //     });
+  //     return Promise.all(residents).then(names => ({
+  //       name: planet.name,
+  //       terrain: planet.terrain,
+  //       population: planet.population,
+  //       climate: planet.climate,
+  //       residents: names,
+  //       type: 'planets',
+  //       isFavorite: false
+  //     }));
+  //   });
+  //   return Promise.all(planetPromises);
+  // };
 
-  identifyVehicleInfo = vehicleInfo => {
-    return vehicleInfo.map(vehicle => {
-      return {
-        name: vehicle.name,
-        model: vehicle.model,
-        vehicleClass: vehicle.vehicle_class,
-        passengers: vehicle.passengers,
-        type: 'vehicles',
-        isFavorite: false
-      };
-    });
-  };
+  // identifyVehicleInfo = vehicleInfo => {
+  //   return vehicleInfo.map(vehicle => {
+  //     return {
+  //       name: vehicle.name,
+  //       model: vehicle.model,
+  //       vehicleClass: vehicle.vehicle_class,
+  //       passengers: vehicle.passengers,
+  //       type: 'vehicles',
+  //       isFavorite: false
+  //     };
+  //   });
+  // };
 
-  componentDidMount() {
-    fetch("https://swapi.co/api/films/")
-      .then(res => res.json())
-      .then(data => this.setState({ films: data.results }))
-      .then(
-        fetch("https://swapi.co/api/people/")
-          .then(res => res.json())
-          .then(data => this.fetchPlanetInfoForPerson(data.results))
-          .then(personInfo => this.setState({ people: personInfo.flat() }))
-      )
-      .then(
-        fetch("https://swapi.co/api/planets/")
-          .then(res => res.json())
-          .then(data => this.fetchPlanetInfo(data.results))
-          .then(planetInfo => this.setState({ planets: planetInfo }))
-      )
-      .then(
-        fetch("https://swapi.co/api/vehicles/")
-          .then(res => res.json())
-          .then(data => this.identifyVehicleInfo(data.results))
-          .then(vehicleInfo =>
-            this.setState({ vehicles: vehicleInfo, isLoaded: true })
-          )
-          )
-          .catch(err => console.log(err));
-        }
+  componentDidMount = () => {
+    fetchCalls()
+    .then(data => data.forEach(type => {
+      console.log('this is the data', data)
+      console.log('this is the dataType:', type.dataType)
+      this.setState({[type.dataType]: type.results})
+    }))
+    .catch(err => console.log(err))
+  }
+    // fetch("https://swapi.co/api/films/")
+    //   .then(res => res.json())
+    //   .then(data => this.setState({ films: data.results }))
+    //   .then(
+    //     fetch("https://swapi.co/api/people/")
+    //       .then(res => res.json())
+    //       .then(data => this.fetchPlanetInfoForPerson(data.results))
+    //       .then(personInfo => this.setState({ people: personInfo.flat() }))
+    //   )
+    //   .then(
+    //     fetch("https://swapi.co/api/planets/")
+    //       .then(res => res.json())
+    //       .then(data => this.fetchPlanetInfo(data.results))
+    //       .then(planetInfo => this.setState({ planets: planetInfo }))
+    //   )
+    //   .then(
+    //     fetch("https://swapi.co/api/vehicles/")
+    //       .then(res => res.json())
+    //       .then(data => this.identifyVehicleInfo(data.results))
+    //       .then(vehicleInfo =>
+    //         this.setState({ vehicles: vehicleInfo, isLoaded: true })
+    //       )
+    //       )
+    //       .catch(err => console.log(err));
+    //     }
         
         addFavorite = (id, type) => {
           const favoritedCard = this.state[type].find(card => id.name == card.name);
@@ -130,6 +139,7 @@ class App extends Component {
         };
         
   render() {
+    console.log(this.state)
     return (
       <main className="app">
         {!this.state.isLoaded && <img className="loading" src={loading2}/> }
@@ -148,9 +158,10 @@ class App extends Component {
             <NavLink to="/vehicles" className="nav__link" activeClassName="selected">
               VEHICLES
             </NavLink>
-            <div className="nav__div--favorites">
+            {/* <div className="nav__div--favorites">
               <NavLink to="/favorites" className="nav__link favorite__link" activeClassName="selected">
-                FAVORITES <span>{this.state.favorites.length}</span>
+                FAVORITES 
+                <span>{this.state.favorites.length}</span>
               </NavLink>
               <img
                 className="favorite__image"
@@ -158,7 +169,7 @@ class App extends Component {
                 height="35px"
                 width="35px"
                 />
-            </div>
+            </div> */}
           </section>
         </header>
         {/* {!this.state.isLoaded && <img className="loading" src={loading}/> } */}
