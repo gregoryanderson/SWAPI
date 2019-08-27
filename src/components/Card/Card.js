@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import './Card.css';
 
-
-
 const Card = ({ data, addFavorite, type }) => {
   const inactiveFavoritesImage = 'https://vignette.wikia.nocookie.net/starwars/images/0/0e/Whitestarbird.svg/revision/latest?cb=20080310230901';
   const activeFavoritesImage = 'http://images2.wikia.nocookie.net/__cb20080228205028/starwars/images/thumb/7/71/Redstarbird.svg/1600px-Redstarbird.svg.png';

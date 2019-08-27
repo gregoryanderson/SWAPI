@@ -32,3 +32,6 @@ npm test
  - (Alyssa Lundgren)[@lundgrea]
 
 ## Screenshots
+![](src/Images/Screenshot-1.png)
+![](src/Images/Screenshot-2.png)
+![](src/Images/Screenshot-3.png)

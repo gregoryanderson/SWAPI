@@ -26,29 +26,27 @@ html {
 
 /* nav bar */
 .nav__header {
-  list-style-type: none;
-  justify-content: space-around;
   align-items: center;
   display: inline-flex;
+  justify-content: space-around;
+  list-style-type: none;
   width: 100%;
 }
 
 .nav__h1 {
   font-size: 50px;
   margin: 30px 0px 30px 40px;
-  /* width: 100%; */
   min-width: 600px;
 }
 
 .nav__section--links {
-  width: 100%;
+  align-items: center;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  /* text-align: center; */
+  width: 100%;
 }
 
-.selected{
+.selected {
   color:#FF0200
 }
 
@@ -58,19 +56,19 @@ html {
 }
 
 .nav__div--favorites {
+  align-items: center;
   display: flex;
   justify-content: space-around;
-  align-items: center;
 }
 
 /* home header */
-.home__h1{
-  text-align: center;
-  width: 500px;
+.home__h1 {
   display: flex;
   justify-content: center;
-  margin: auto;
   margin-top: 50px;
+  margin: auto;
+  text-align: center;
+  width: 500px;
 }
 
 .favorite__link {
@@ -79,10 +77,10 @@ html {
 
 /* card container */
 .app__section {
-  padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
+  padding: 20px;
 }
 
 /* selected card */
@@ -91,24 +89,8 @@ html {
   justify-content: center;
 }
 
-.loading{
+.loading {
   background-size: cover;
   height: 100%;
   width: 100%
 }
-
-/* //media queries */
-/* .nav__header{
-  display: inline-flex;
-} */
-
-/* this is the symbol font family for if/when we wish to use it */
-
-/* @font-face {font-family: "StarWars  Kit";
-  src: url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.eot");
-  src: url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.eot?#iefix") format("embedded-opentype"),
-  url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.woff2") format("woff2"),
-  url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.woff") format("woff"),
-  url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.ttf") format("truetype"),
-  url("//db.onlinewebfonts.com/t/a5522bbd15c8d4afaf762a74906cebf3.svg#StarWars  Kit") format("svg");
-} */
