@@ -139,7 +139,6 @@ class App extends Component {
         };
         
   render() {
-    console.log(this.state)
     return (
       <main className="app">
         {!this.state.isLoaded && <img className="loading" src={loading2}/> }
