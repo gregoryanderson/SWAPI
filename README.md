@@ -18,7 +18,7 @@ Then launch the application within the browser:
 npm start
 ```
 
-From there open [http://localhost:3000](http://localhost:3000) to view the applicaiton in your browser.
+From there open [http://localhost:3000](http://localhost:3000) to view the application in your browser.
 
 ## Testing
 
